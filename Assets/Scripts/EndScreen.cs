@@ -1,5 +1,4 @@
 using DG.Tweening;
-using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,8 +20,8 @@ public class EndScreen : MonoBehaviour
     {
         _board = GameObject.FindGameObjectWithTag("Linker").GetComponent<Linker>().board;
 
-        Assert.NotNull(_textMeshPro, "Message field (TMP) was null");
-        Assert.NotNull(_menuButton, "Menu button was null");
+        Debug.Assert(_textMeshPro != null, "Message field (TMP) was null");
+        Debug.Assert(_menuButton != null, "Menu button was null");
         _board.OnWin += ShowWinMessage;
         _board.OnTie += ShowTieMessage;
         _menuButton.onClick.AddListener(ReturnToMenu);

@@ -1,5 +1,4 @@
 using DG.Tweening;
-using NUnit.Framework;
 using UnityEngine;
 
 [RequireComponent(typeof(CanvasGroup))]
