@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24bbf07834dd91a44a3416df3818e4e6, type: 3}
+  m_Script: {fileID: 11500000, guid: dabe7dd24993ce44596e7e2c4b417ce7, type: 3}
   m_Name: MenuGameState
   m_EditorClassIdentifier: Assembly-CSharp::MenuGameState
   _stateName: Menu
+  _isGameInteractable: 0
+  _restartGame: 0
+  _endGame: 0

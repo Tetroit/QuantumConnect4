@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55e34ee3d458dda4a86d51f282a6ad0a, type: 3}
+  m_Script: {fileID: 11500000, guid: dabe7dd24993ce44596e7e2c4b417ce7, type: 3}
   m_Name: MatchGameState
   m_EditorClassIdentifier: Assembly-CSharp::MatchGameState
   _stateName: Match
+  _isGameInteractable: 1
+  _restartGame: 1
+  _endGame: 0

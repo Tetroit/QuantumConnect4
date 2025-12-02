@@ -51,7 +51,7 @@ public class MainMenu : MonoBehaviour
     {
         if (_fadeTween != null && _fadeTween.active)
             _fadeTween.Kill();
-        _fadeTween = _canvasGroup.DOFade(0.0f, 1.0f);
+        _fadeTween = _canvasGroup.DOFade(0.0f, 0.3f);
         _canvasGroup.interactable = false;
         _fadeTween.OnComplete(() =>
         {
@@ -63,7 +63,10 @@ public class MainMenu : MonoBehaviour
         gameObject.SetActive(true);
         if (_fadeTween != null && _fadeTween.active)
             _fadeTween.Kill();
-        _fadeTween = _canvasGroup.DOFade(1.0f, 1.0f);
+        _fadeTween = _canvasGroup.DOFade(1.0f, 0.3f).OnComplete(() =>
+        {
+            _canvasGroup.interactable = true;
+        });
     }
 
     public void Quit()
