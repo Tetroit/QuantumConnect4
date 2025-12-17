@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     }
     public void StartGame()
     {
-        GameStateMachine.instance.SetState("Match");
+        GameStateMachine.instance.SetState(EGameState.GAME);
     }
     public void ShowRules()
     {

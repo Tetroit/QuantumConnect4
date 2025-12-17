@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class GamePiece : MonoBehaviour
 {
-    Vector2Int _pos;
-    Board.Player _player;
-    Tween _movingTween;
-
+    protected Material _material;
+    protected Vector2Int _pos;
+    protected EPlayer _player;
+    protected Tween _movingTween;
     [SerializeField] float animationSpeed = 0.2f;
 
     public Vector2Int pos => _pos;
-    public Board.Player player => _player;
+    public EPlayer player => _player;
     public bool isInAnimation => _movingTween != null;
-    public Func<Vector2Int, Vector3> cellToLocal;
     public Action OnAnimationFinish;
-    public void AssignPlayer(Board.Player player)
+    public void Awake()
     {
-        _player = player; 
+        _material = GetComponent<MeshRenderer>().material;
+    }
+    public void Init(Color color, EPlayer player)
+    {
+        _material.color = color;
+        _player = player;
     }
     public void TerminateMovingAnimation()
     {
@@ -27,28 +31,29 @@ public class GamePiece : MonoBehaviour
         OnAnimationFinish = null;
 
     }
-    public void PlaceIn(Vector2Int boardPos, Vector2Int topPos, Action OnFinish = null)
+    public void PlaceIn(Vector2Int boardPos)
+    {
+        _pos = boardPos;
+       
+    }
+    public void MoveIn(Vector3 topPos, Vector3 boardPos, Action OnFinish = null)
     {
         if (_movingTween != null) TerminateMovingAnimation();
-
-        _pos = boardPos;
-        Vector3 localTopPos = cellToLocal(topPos);
-        Vector3 localPos = cellToLocal(boardPos);
         OnAnimationFinish += OnFinish;
-        _movingTween = transform.DOLocalMove(localTopPos, animationSpeed).SetEase(Ease.OutQuad).OnComplete(() => 
-        _movingTween = transform.DOLocalMove(localPos, animationSpeed).SetEase(Ease.OutQuad).OnComplete(() =>
+        _movingTween = transform.DOLocalMove(topPos, animationSpeed).SetEase(Ease.OutQuad).OnComplete(() =>
+        _movingTween = transform.DOLocalMove(boardPos, animationSpeed).SetEase(Ease.OutQuad).OnComplete(() =>
         {
             OnAnimationFinish?.Invoke();
             _movingTween = null;
             OnAnimationFinish = null;
         }));
     }
-    public void MoveTo(Vector2Int boardPos, Action OnFinish = null)
+    public void MoveTo(Vector2Int boardPos, Vector3 localPos, Action OnFinish = null)
     {
+        PlaceIn(boardPos);
         if (_movingTween != null) TerminateMovingAnimation();
 
         _pos = boardPos;
-        Vector3 localPos = cellToLocal(boardPos);
         OnAnimationFinish += OnFinish;
         _movingTween = transform.DOLocalMove(localPos, 0.5f).SetEase(Ease.OutQuad).OnComplete(() =>
         {
@@ -57,10 +62,4 @@ public class GamePiece : MonoBehaviour
             OnAnimationFinish = null;
         });
     }
-
-    public void SetBoardPos(Vector2Int boardPos)
-    {
-        _pos = boardPos;
-    }
-
 }

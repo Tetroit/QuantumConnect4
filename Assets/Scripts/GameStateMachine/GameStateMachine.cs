@@ -1,28 +1,33 @@
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
+
+public enum EGameState
+{
+    MENU,
+    GAME,
+    END
+}
 
 public class GameStateMachine : MonoBehaviour
 {
     static GameStateMachine _instance;
     public static GameStateMachine instance => _instance;
+    EGameState _currentState;
+    [SerializedDictionary("Type, State")]
+    [SerializeField] SerializedDictionary<EGameState, GameState> _states;
+    [SerializeField] EGameState _startState;
 
-    GameState _currentState = null;
-    public GameState currentState => _currentState;
-
-    //I would use a dictionary, but it is not serializable :(
-    [SerializeField] List<GameState> states;
-    [SerializeField] int _startStateID = 0;
-    [SerializeField] Linker _linker;
-
-    public UnityEvent<GameState, GameState> OnStateChange;
-    GameState FindState(string key)
+    public GameState currentState
     {
-        GameState res = states.Find((GameState state) => { return state.stateName == key; });
-        if (res == null)
-            Debug.Log($"No state found with {key} key");
-        return res;
+        get
+        {
+            if (_states == null || !_states.ContainsKey(_currentState))
+                return null;
+            return _states[_currentState];
+        }
     }
+    public UnityEvent<GameState, GameState> OnStateChange;
     void Awake()
     {
         if (_instance == null)
@@ -32,39 +37,31 @@ public class GameStateMachine : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (_linker == null)
-            _linker = GameObject.FindGameObjectWithTag("Linker").GetComponent<Linker>();
-        if (_linker == null)
-            Debug.Log("Failed to find linker");
     }
     private void Start()
     {
-        if (_startStateID >= 0 && _startStateID < states.Count)
-        {
-            SetState(states[_startStateID]);
-        }
-    }
-    void SetState(GameState gameState)
-    {
-        if (gameState == null || _currentState == gameState)
-            return;
-
-        gameState.OnEnter();
-        if (_currentState != null)
-            _currentState.OnExit();
-        OnStateChange?.Invoke(_currentState, gameState);
-        _currentState = gameState;
-    }
-    public void SetState(string gameStateName)
-    {
-        if (_currentState != null && gameStateName == _currentState.name){
-            return;
-        }
-        GameState gameState = FindState(gameStateName);
-        SetState(gameState);
+        SetState(_startState);
     }
     private void Update()
     {
-        _currentState?.Update();
+        currentState.Update();
+    }
+    public void SetState(EGameState state)
+    {
+        if (_currentState == state)
+        {
+            return;
+        }
+        GameState newGameState = _states[state];
+        if (newGameState == null || currentState == newGameState)
+        {
+            return;
+        }
+
+        newGameState.OnEnter();
+        if (currentState != null)
+            currentState.OnExit();
+        OnStateChange?.Invoke(currentState, newGameState);
+        _currentState = state;
     }
 }

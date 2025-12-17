@@ -1112,10 +1112,10 @@ RectTransform:
   - {fileID: 14857141}
   m_Father: {fileID: 1368149009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -145}
-  m_SizeDelta: {x: 500, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &418604746
 MonoBehaviour:
@@ -1657,10 +1657,10 @@ RectTransform:
   - {fileID: 561073400}
   m_Father: {fileID: 1368149009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -25}
-  m_SizeDelta: {x: 500, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &574073657
 MonoBehaviour:
@@ -2381,10 +2381,10 @@ RectTransform:
   - {fileID: 1687350107}
   m_Father: {fileID: 1368149009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -85}
-  m_SizeDelta: {x: 500, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &874194645
 MonoBehaviour:
@@ -2494,7 +2494,7 @@ GameObject:
   - component: {fileID: 954011796}
   - component: {fileID: 954011800}
   m_Layer: 5
-  m_Name: '[bg=#693737]<color=#FFFFFF>UI</color>'
+  m_Name: '#rUI'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3440,7 +3440,7 @@ GameObject:
   - component: {fileID: 1176210471}
   - component: {fileID: 1176210472}
   m_Layer: 0
-  m_Name: '[bg=#696337]<color=#FFFFFF>GameStateMachine</color>'
+  m_Name: '#bStateMachine'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3455,7 +3455,7 @@ Transform:
   m_GameObject: {fileID: 1176210470}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 447.43027, y: 0, z: 4379.5566}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3473,12 +3473,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316d66bca4ca8e448807c929f2ae2d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStateMachine
-  states:
-  - {fileID: 11400000, guid: ab8c92e8bf40a914d909dd8c5da3becd, type: 2}
-  - {fileID: 11400000, guid: cbf64d5da0fae794dbe1944ffb08f10b, type: 2}
-  - {fileID: 11400000, guid: c92ffbec1b17e8e4fa96e6abbbb7594f, type: 2}
-  _startStateID: 0
-  _linker: {fileID: 2074371475}
+  _states:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: ab8c92e8bf40a914d909dd8c5da3becd, type: 2}
+    - Key: 1
+      Value: {fileID: 11400000, guid: cbf64d5da0fae794dbe1944ffb08f10b, type: 2}
+    - Key: 2
+      Value: {fileID: 11400000, guid: c92ffbec1b17e8e4fa96e6abbbb7594f, type: 2}
+  _startState: 0
   OnStateChange:
     m_PersistentCalls:
       m_Calls: []
@@ -3722,7 +3725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1368149009
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4550,6 +4553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d4aa2d1fa32c7409895fda00a36140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LinksDisplay
+  _board: {fileID: 1948901428}
   _name: White
   _player: 0
 --- !u!1 &1742545035
@@ -4949,6 +4953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d4aa2d1fa32c7409895fda00a36140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LinksDisplay
+  _board: {fileID: 1948901428}
   _name: Black
   _player: 1
 --- !u!1 &1913655997
@@ -5151,8 +5156,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1948901427}
   - component: {fileID: 1948901428}
-  - component: {fileID: 1948901429}
+  - component: {fileID: 1948901431}
   - component: {fileID: 1948901430}
+  - component: {fileID: 1948901429}
   m_Layer: 0
   m_Name: GameBoard
   m_TagString: Untagged
@@ -5189,18 +5195,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f821e7409fa93c46b3276ead08a7dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Board
-  _normalPreviewPosition: {x: 0, y: 5, z: 0}
-  _quantumPreviewPosition1: {x: 1, y: 5, z: 0}
-  _quantumPreviewPosition2: {x: -1, y: 5, z: 0}
+  _pieceFactory:
+    _quantumPrefab: {fileID: 5858259801962584667, guid: f323d628a94abf940816aea85e138cfd, type: 3}
+    _normalPrefab: {fileID: -2163556212498387032, guid: 1dc8b4080bff0fd47afce81740b434db, type: 3}
+    styleProvider:
+      _style: {fileID: 0}
+  _styleProvider:
+    _style: {fileID: 11400000, guid: 22454e00c407b0843af67fb7aeb89887, type: 2}
+  _controllerManager:
+    _controllers:
+    - {fileID: 1948901430}
   _nRows: 6
   _nCols: 7
   _cellWidth: 1
   _cellHeight: 1
   _highlighter: {fileID: 1962511175}
-  _quantumPrefab: {fileID: 4329613007074547305, guid: f323d628a94abf940816aea85e138cfd, type: 3}
-  _normalPrefab: {fileID: 7975267889602922098, guid: 1dc8b4080bff0fd47afce81740b434db, type: 3}
-  _confirmPlacementAction: {fileID: -263039978679772159, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  _splitPieceAction: {fileID: -2481235660445897634, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!65 &1948901429
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5235,6 +5244,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoardController
   _allowInteraction: 0
+  _confirmPlacementAction: {fileID: -263039978679772159, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _splitPieceAction: {fileID: -2481235660445897634, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!114 &1948901431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948901426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d79b486cbb70c43a7b0eaddf43ea88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoardPreviewBar
+  factory:
+    _quantumPrefab: {fileID: 0}
+    _normalPrefab: {fileID: 0}
+    styleProvider:
+      _style: {fileID: 0}
+  _normalPreviewPosition: {x: 0, y: 5, z: 0}
+  _quantumPreviewPosition1: {x: -2, y: 5, z: 0}
+  _quantumPreviewPosition2: {x: 2, y: 5, z: 0}
 --- !u!1 &1962511175 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4195321401096545884, guid: 76bb4f8c9e791c048a24920ad748723d, type: 3}
@@ -5251,7 +5282,7 @@ GameObject:
   - component: {fileID: 2074371474}
   - component: {fileID: 2074371475}
   m_Layer: 0
-  m_Name: '[bg=#375069]<color=#FFFFFF>Linker</color>'
+  m_Name: '#gLinker'
   m_TagString: Linker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5512,8 +5543,8 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 1948901427}
   - {fileID: 954011799}
   - {fileID: 2074371474}
   - {fileID: 1176210471}
   - {fileID: 1942088610}
-  - {fileID: 1948901427}

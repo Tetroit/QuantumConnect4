@@ -2,23 +2,23 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static Board;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class EndScreen : MonoBehaviour
 {
     Tween _fadeTween;
     CanvasGroup _canvasGroup;
-    Board _board;
+    IBoardEvents _board;
     [SerializeField] TextMeshProUGUI _textMeshPro;
     [SerializeField] Button _menuButton;
+
     void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
     }
     private void OnEnable()
     {
-        _board = GameObject.FindGameObjectWithTag("Linker").GetComponent<Linker>().board;
+        _board = Linker.instance.board.events;
 
         Debug.Assert(_textMeshPro != null, "Message field (TMP) was null");
         Debug.Assert(_menuButton != null, "Menu button was null");
@@ -34,9 +34,9 @@ public class EndScreen : MonoBehaviour
     }
     void ReturnToMenu()
     {
-        GameStateMachine.instance.SetState("Menu");
+        GameStateMachine.instance.SetState(EGameState.MENU);
     }
-    void ShowWinMessage(Player player)
+    void ShowWinMessage(EPlayer player)
     {
         _textMeshPro.text = $"{player} wins!";
     }

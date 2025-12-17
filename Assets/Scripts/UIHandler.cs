@@ -14,22 +14,22 @@ public class UIHandler : MonoBehaviour
     {
         if (from && from.stateName == "Menu")
         {
-            var menu = GameObject.FindGameObjectWithTag("Linker").GetComponent<Linker>().menu;
+            var menu = Linker.instance.menu;
             menu.Hide();
         }
         else if (to.stateName == "Menu")
         {
-            var menu = GameObject.FindGameObjectWithTag("Linker").GetComponent<Linker>().menu;
+            var menu = Linker.instance.menu;
             menu.Show();
         }
         if (from && from.stateName == "End")
         {
-            var endScreen = GameObject.FindGameObjectWithTag("Linker").GetComponent<Linker>().endScreen;
+            var endScreen = Linker.instance.endScreen;
             endScreen.Hide();
         }
         else if (to.stateName == "End")
         {
-            var endScreen = GameObject.FindGameObjectWithTag("Linker").GetComponent<Linker>().endScreen;
+            var endScreen = Linker.instance.endScreen;
             endScreen.Show();
         }
     }
